@@ -13,7 +13,7 @@ const FontResizer = () => {
 
     return (
         <div>
-            Text
+            Font Size
             <input type='range' min='1' max='50' onChange={handleChange}/>
         </div>
     )
