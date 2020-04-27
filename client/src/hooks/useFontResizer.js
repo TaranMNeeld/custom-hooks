@@ -9,7 +9,6 @@ export const useFontResizer = () => {
     useEffect(() => {
         setFontSize(localFontSize)
         body.style.fontSize = `${fontSize}px`;
-        console.log(body.style.fontSize)
     }, [localFontSize])
     
     return [fontSize, setFontSize]
