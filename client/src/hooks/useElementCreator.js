@@ -1,19 +1,15 @@
-import {useState, useEffect} from 'react'
+import { useState, useEffect } from 'react'
 
 export const useElementCreator = () => {
 
     let localElements = localStorage.getItem('elements')
-    const [elements, setElements] = useState([
-        {
-            id: 1,
-            name: 'div'
-        }
-    ])
+
+    const [elements, setElements] = useState(JSON.parse(localElements))
+
     const body = document.querySelector('body')
 
     useEffect(() => {
-        setElements(JSON.parse(localElements))
-        for(let i = 0; i < elements.length; i++) {
+        for (let i = 0; i < elements.length; i++) {
             let element = elements[i]
             let hasChild = document.getElementById(`${element.id}`)
             if (!hasChild) {
@@ -24,6 +20,6 @@ export const useElementCreator = () => {
             }
         }
     }, [localElements])
-    
+
     return [elements, setElements]
 }
