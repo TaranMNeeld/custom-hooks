@@ -2,6 +2,18 @@ import React, {useState} from 'react'
 import {useElementCreator} from '../hooks/useElementCreator'
 
 const ElementCreator = () => {
+
+    let localElements = localStorage.getItem('elements')
+    if(localElements === null) {
+        let initialElements = [
+            {
+                id: 1,
+                name: 'div'
+            }
+        ]
+        localStorage.setItem('elements', JSON.stringify(initialElements))
+    }
+    
     const [elements, setElements] = useElementCreator()
 
     const [newElement, setNewElement] = useState('')
@@ -11,13 +23,13 @@ const ElementCreator = () => {
     }
 
     const handleSubmit = event => {
-        event.preventDefault()
         let nextId = elements[elements.length - 1].id + 1
-        setElements([...elements, {
+        let tempElements = [...elements, {
             id: nextId,
             name: newElement
-        }])
-        localStorage.setItem('elements', JSON.stringify(elements))
+        }]
+        console.log(elements)
+        localStorage.setItem('elements', JSON.stringify(tempElements))
     }
 
     return (
